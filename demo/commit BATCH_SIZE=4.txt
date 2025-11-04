@@ -1,0 +1,122 @@
+╔════════════════════════════════════════════════════════════════════╗
+║                     CODE QUALITY ANALYSIS                           ║
+╚════════════════════════════════════════════════════════════════════╝
+
+✗ Quality Gate: FAILED
+
+📊 METRICS
+├─ Reliability: E
+├─ Security: E
+├─ Maintainability: E
+├─ Coverage: 0%
+├─ Duplications: 30%
+└─ Complexity: 20
+
+📋 ISSUES SUMMARY
+Total: 53 issues found
+  🔴 Blocker: 18
+  🟠 Critical: 15
+  🟡 Major: 13
+  🔵 Minor: 6
+  ⚪ Info: 1
+
+🔍 DETAILED ISSUES
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/AuthController.java:80
+   SQL injection vulnerability: Direct string concatenation in SQL query
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/AuthController.java:200
+   SQL injection vulnerability: Direct string concatenation in SQL query
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/AuthController.java:38
+   Hard-coded credential: ADMIN_SECRET = 'SuperSecret123!'
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/AuthController.java:39
+   Hard-coded credential: API_KEY = 'ak-prod-9876543210fedcba'
+
+[BLOCKER] BUG in src/main/java/com/example/crud/controller/AuthController.java:149
+   FileWriter resource leak - not closed properly
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/ContractController.java:82
+   SQL injection vulnerability: User input concatenated directly into SQL query
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/ContractController.java:165
+   Hardcoded database credentials exposed
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/ContractController.java:167
+   Hardcoded AWS secret key exposed
+
+[BLOCKER] BUG in src/main/java/com/example/crud/controller/ContractController.java:133
+   NullPointerException risk: Accessing list element without checking if list is empty
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/PortfolioController.java:80
+   SQL injection vulnerability - user input directly concatenated into SQL query
+
+[BLOCKER] BUG in src/main/java/com/example/crud/controller/PortfolioController.java:129
+   Resource leak - FileInputStream not closed properly
+
+[BLOCKER] BUG in src/main/java/com/example/crud/controller/PortfolioController.java:130
+   Resource leak - BufferedReader not closed properly
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/PortfolioController.java:168
+   Hard-coded password 'Portfolio2024!' exposed
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/PortfolioController.java:169
+   Hard-coded API secret 'abc123xyz789' exposed
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/PortfolioController.java:170
+   Hard-coded JWT key 'my-secret-jwt-key-do-not-share' exposed
+
+[BLOCKER] BUG in src/main/java/com/example/crud/controller/PortfolioController.java:147
+   Race condition on non-thread-safe sharedCounter field
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/UserController.java:61
+   SQL Injection vulnerability - Direct string concatenation of user input
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/UserController.java:127
+   Hard-coded credentials - Password 'admin123' and API key exposed
+
+🔥 SECURITY HOTSPOTS: 12 found
+   Review security-sensitive code carefully
+
+
+⏱️  Analysis completed in 150.407s
+[ERROR] ❌ Commit blocked due to quality gate failure
+
+=== CRITICAL ISSUES ===
+- SQL injection vulnerability allowing arbitrary SQL execution
+- SQL injection vulnerability allowing arbitrary SQL execution
+- Hard-coded admin secret exposed in source code
+- Hard-coded API key exposed in source code
+- FileWriter resource leak - not closed in finally block or try-with-resources
+- Database connection leak - not closed in finally block or try-with-resources
+- Potential NullPointerException when calling toLowerCase() on possibly null email
+- Potential NullPointerException when calling length() on possibly null token
+- Empty catch blocks hide exceptions and make debugging impossible
+- SQL injection vulnerability allowing arbitrary SQL execution
+- Hardcoded database credentials in source code
+- Hardcoded AWS secret key exposed in source code
+- Potential NullPointerException accessing empty list
+- Resource leak: FileInputStream never closed
+- Resource leak: BufferedReader never closed
+- Sensitive information exposed in console output
+- Insecure random number generation for contract IDs
+- Thread-safety issue with shared mutable state
+- SQL Injection vulnerability - user input directly concatenated into SQL query
+- Resource leak - FileInputStream not closed properly
+- Resource leak - BufferedReader not closed properly
+- Hard-coded password 'Portfolio2024!' exposed
+- Hard-coded API secret 'abc123xyz789' exposed
+- Hard-coded JWT key 'my-secret-jwt-key-do-not-share' exposed
+- Race condition on non-thread-safe sharedCounter field
+- Insecure random number generation using java.util.Random for token
+- Null pointer risk - returning results without null check
+- Sensitive data exposure - logging API keys and database passwords
+- SQL Injection vulnerability - Direct string concatenation of user input in SQL query allows arbitrary SQL execution
+- Hard-coded credentials - Password 'admin123' and API key exposed in source code
+- Race condition in balance update - AtomicInteger get/set pattern is not atomic, causing potential data corruption
+- Sensitive data exposure - User password from HTTP header logged to console
+- Empty catch block - InterruptedException caught and ignored without proper handling or logging
+
+=== AI RESOLUTION PROMPT GENERATED ===
+An AI-friendly prompt has been generated at: ./claude_resolution_prompt.md
+Copy this file to a new Claude instance to resolve problems automatically.

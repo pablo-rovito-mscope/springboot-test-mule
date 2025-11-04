@@ -1,2 +1,8 @@
 .idea/
 target/
+
+# Claude Git Hooks
+.claude/
+debug-claude-response.json
+claude_resolution_prompt.md
+.claude-pr-analysis.json

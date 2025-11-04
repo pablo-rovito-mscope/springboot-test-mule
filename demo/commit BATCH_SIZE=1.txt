@@ -1,0 +1,125 @@
+
+╔════════════════════════════════════════════════════════════════════╗
+║                     CODE QUALITY ANALYSIS                           ║
+╚════════════════════════════════════════════════════════════════════╝
+
+✗ Quality Gate: FAILED
+
+📊 METRICS
+├─ Reliability: E
+├─ Security: E
+├─ Maintainability: E
+├─ Coverage: 0%
+├─ Duplications: 26%
+└─ Complexity: 20
+
+📋 ISSUES SUMMARY
+Total: 46 issues found
+  🔴 Blocker: 12
+  🟠 Critical: 13
+  🟡 Major: 12
+  🔵 Minor: 7
+  ⚪ Info: 2
+
+🔍 DETAILED ISSUES
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/AuthController.java:80
+   SQL Injection vulnerability - Direct concatenation of user input in SQL query
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/AuthController.java:197
+   SQL Injection vulnerability - Direct concatenation of user input in SQL query
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/AuthController.java:37
+   Hardcoded credentials - Admin secret and API key exposed
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/ContractController.java:81
+   SQL Injection vulnerability - concatenating user input directly into SQL query
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/ContractController.java:128
+   Hardcoded credentials exposed - API Token leaked in logs
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/ContractController.java:163
+   Hardcoded credentials - database and AWS credentials exposed
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/PortfolioController.java:80
+   SQL Injection vulnerability - user input directly concatenated into SQL query
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/PortfolioController.java:168
+   Hardcoded credentials - admin password exposed in code
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/PortfolioController.java:117
+   Hardcoded credentials - API key and database password exposed in logs
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/UserController.java:61
+   SQL Injection vulnerability - user input concatenated directly into SQL query
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/UserController.java:127
+   Hardcoded database password 'admin123'
+
+[BLOCKER] VULNERABILITY in src/main/java/com/example/crud/controller/UserController.java:128
+   Hardcoded API key 'sk-1234567890abcdef'
+
+[CRITICAL] BUG in src/main/java/com/example/crud/controller/AuthController.java:143
+   Resource leak - FileWriter not closed in finally block
+
+[CRITICAL] BUG in src/main/java/com/example/crud/controller/AuthController.java:150
+   Resource leak - Database connection not closed
+
+[CRITICAL] BUG in src/main/java/com/example/crud/controller/AuthController.java:93
+   Potential NullPointerException - email.toLowerCase() without null check
+
+[CRITICAL] BUG in src/main/java/com/example/crud/controller/AuthController.java:94
+   Potential NullPointerException - token.length() without null check
+
+[CRITICAL] BUG in src/main/java/com/example/crud/controller/ContractController.java:145
+   Resource leak - FileInputStream and BufferedReader are never closed
+
+[CRITICAL] BUG in src/main/java/com/example/crud/controller/ContractController.java:132
+   Potential NullPointerException - accessing results.get(0) without checking if list is empty
+
+[CRITICAL] BUG in src/main/java/com/example/crud/controller/PortfolioController.java:129
+   Resource leak - FileInputStream and BufferedReader not closed
+
+[CRITICAL] BUG in src/main/java/com/example/crud/controller/PortfolioController.java:147
+   Thread safety issue - race condition on shared mutable state
+
+[CRITICAL] BUG in src/main/java/com/example/crud/controller/UserController.java:115
+   Race condition in balance update - non-atomic read-modify-write operation
+
+[CRITICAL] VULNERABILITY in src/main/java/com/example/crud/controller/UserController.java:104
+   Sensitive information exposure - logging password from request header
+
+[CRITICAL] BUG in src/main/java/com/example/crud/controller/PortfolioController.java:121
+   Potential null pointer exception - results may be null
+
+🔥 SECURITY HOTSPOTS: 19 found
+   Review security-sensitive code carefully
+
+
+⏱️  Analysis completed in 367.896s
+[ERROR] ❌ Commit blocked due to quality gate failure
+
+=== CRITICAL ISSUES ===
+- SQL Injection vulnerability in verifyToken method - direct concatenation of user input
+- SQL Injection vulnerability in validateAdminAccess method - direct concatenation of user input
+- Hardcoded credentials - Admin secret and API key exposed as constants
+- SQL Injection vulnerability - user input concatenated directly into SQL query without parameterization
+- Hardcoded API Token and database password exposed in console output
+- Hardcoded database credentials and AWS secret key in source code
+- SQL Injection vulnerability allows attackers to execute arbitrary SQL commands
+- Hardcoded admin password and API credentials exposed in code
+- Sensitive credentials logged to console output
+- SQL Injection vulnerability - user input concatenated directly into SQL query without parameterization
+- Hardcoded database password 'admin123' exposed in source code
+- Hardcoded API key 'sk-1234567890abcdef' exposed in source code
+- Resource leak - FileWriter not properly closed in exportAuthLogs
+- Resource leak - Database connection not properly closed
+- Resource leak - FileInputStream and BufferedReader are opened but never closed
+- NullPointerException risk - accessing first element of list without checking if empty
+- Resource leak - file streams not properly closed
+- Thread safety issue - race condition on shared state
+- Race condition in balance update - non-atomic read-modify-write operation can cause data corruption
+- Sensitive information exposure - logging password from request header
+
+=== AI RESOLUTION PROMPT GENERATED ===
+An AI-friendly prompt has been generated at: ./claude_resolution_prompt.md
+Copy this file to a new Claude instance to resolve problems automatically.
